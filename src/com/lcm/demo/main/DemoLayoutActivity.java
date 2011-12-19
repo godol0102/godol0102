@@ -18,17 +18,20 @@ public class DemoLayoutActivity extends ActivityGroup {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.main_screen);
         
         tabHost = (TabHost)findViewById(R.id.tabHost);
         
-//        tabHost.setup();
         tabHost.setup(getLocalActivityManager());
         
-        tabHost.addTab(tabHost.newTabSpec("Func1").setIndicator("Func1").setContent(new Intent(this, Func1.class)));
-        tabHost.addTab(tabHost.newTabSpec("Func2").setIndicator("Func2").setContent(new Intent(this, Func2.class)));
-        tabHost.addTab(tabHost.newTabSpec("Func3").setIndicator("Func3").setContent(new Intent(this, Func3.class)));
-        tabHost.addTab(tabHost.newTabSpec("Func4").setIndicator("Func4").setContent(new Intent(this, Func4.class)));
+        tabHost.addTab(tabHost.newTabSpec(getString(R.string.tab1)).
+        		setIndicator(getString(R.string.tab1)).setContent(new Intent(this, Func1.class)));
+        tabHost.addTab(tabHost.newTabSpec(getString(R.string.tab2)).
+        		setIndicator(getString(R.string.tab2)).setContent(new Intent(this, Func2.class)));
+        tabHost.addTab(tabHost.newTabSpec(getString(R.string.tab3)).
+        		setIndicator(getString(R.string.tab3)).setContent(new Intent(this, Func3.class)));
+        tabHost.addTab(tabHost.newTabSpec(getString(R.string.tab4)).
+        		setIndicator(getString(R.string.tab4)).setContent(new Intent(this, Func4.class)));
         
     }
 }

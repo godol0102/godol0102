@@ -4,6 +4,9 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
-    <TextView android:text="Func1 Page1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-    
+  	<ImageView 
+  	    android:id="@+id/img_from_server"
+  	    android:layout_width="fill_parent"
+  	    android:layout_height="wrap_content"
+  	    android:scaleType="fitCenter"/>
 </LinearLayout>
