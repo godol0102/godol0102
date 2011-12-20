@@ -20,20 +20,20 @@ public class Func1 extends Activity {
 
 	ImageView img;
 	String imgUrl;
-	private static String TAG = "Demo";
+	private static String TAG = "Func1";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		imgUrl = "http://www.winapi.co.kr/data/child3.jpg";
+		imgUrl = "http://fmkorea.net/files/attach/images/3772267/293/009/004/%EC%84%9C%ED%98%84.jpg";
 		int idx = imgUrl.lastIndexOf('/');
 		String localImg = imgUrl.substring(idx + 1);
 		String path = Environment.getDataDirectory().getAbsolutePath();
 		path += "/data/com.lcm.demo/files/" + localImg;
 		
 		if (new File(path).exists() == false) {
-			downloadImg(imgUrl, path);
+			downloadImg(imgUrl, localImg);
 		}
 		
 		setContentView(R.layout.func1);
@@ -43,7 +43,7 @@ public class Func1 extends Activity {
 		try {
 			Bitmap bitmap = BitmapFactory.decodeFile(path);
 			if (bitmap != null) {
-				Log.e(TAG, "img null =" + img);
+				Log.i(TAG, "img null =" + img);
 				img.setImageBitmap(bitmap);
 			}
 		} catch (Exception e) {

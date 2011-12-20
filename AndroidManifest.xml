@@ -14,6 +14,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.RegisterService"></activity>
         <activity android:name=".main.DemoLayoutActivity"></activity>
         <activity android:name=".func1.Func1"></activity>
         <activity android:name=".func2.Func2"></activity>
