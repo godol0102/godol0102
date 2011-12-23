@@ -18,7 +18,6 @@ public class RegisterService extends Activity {
 		Button mButton = (Button) findViewById(R.id.register_request);
 		mButton.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
