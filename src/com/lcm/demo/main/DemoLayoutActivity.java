@@ -9,6 +9,7 @@ import com.lcm.demo.func4.Func4;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.TabHost;
 
 public class DemoLayoutActivity extends ActivityGroup {
@@ -18,6 +19,10 @@ public class DemoLayoutActivity extends ActivityGroup {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Window win = getWindow();
+        win.requestFeature(Window.FEATURE_NO_TITLE);
+        
         setContentView(R.layout.main_screen);
         
         tabHost = (TabHost)findViewById(R.id.tabHost);
@@ -34,4 +39,6 @@ public class DemoLayoutActivity extends ActivityGroup {
         		setIndicator(getString(R.string.tab4)).setContent(new Intent(this, Func4.class)));
         
     }
+    
+    
 }
