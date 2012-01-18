@@ -1,4 +1,4 @@
-package com.lcm.demo.func1;
+package com.godol2.hhc.func1;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="hello">Hello World, DemoLayoutActivity!</string>
     <string name="app_name">DemoLayout</string>
     <string name="tab1">Tab 1</string>
@@ -7,4 +8,9 @@
     <string name="tab3">Tab 3</string>
     <string name="tab4">Tab 4</string>
     <string name="register">Register</string>
+    <string name="login_id">ID</string>
+    <string name="login_pw">Password</string>
+    <string name="login_autologin">Auto Log-in</string>
+    <string name="login_login">Log In</string>
+
 </resources>

@@ -1,10 +1,10 @@
-package com.lcm.demo.main;
+package com.godol2.hhc.main;
 
+import com.godol2.hhc.func1.Func1;
+import com.godol2.hhc.func2.Func2;
+import com.godol2.hhc.func3.Func3;
+import com.godol2.hhc.func4.Func4;
 import com.lcm.demo.R;
-import com.lcm.demo.func1.Func1;
-import com.lcm.demo.func2.Func2;
-import com.lcm.demo.func3.Func3;
-import com.lcm.demo.func4.Func4;
 
 import android.app.ActivityGroup;
 import android.content.Intent;

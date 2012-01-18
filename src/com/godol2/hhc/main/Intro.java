@@ -1,8 +1,9 @@
-package com.lcm.demo.main;
+package com.godol2.hhc.main;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.godol2.hhc.c2dm.C2DMRegister;
 import com.lcm.demo.R;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -55,13 +56,6 @@ public class Intro extends Activity {
 	}
 
 	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-	
-	
-	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
@@ -78,11 +72,11 @@ public class Intro extends Activity {
 				/* Show the alarm for network usage
 				 * 
 				 */
-				Toast.makeText(this, "WCDMA 무선데이터에 연결.. 요금 폭탄 조심 블라 블라", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "WCDMA 무선?�이?�에 ?�결.. ?�금 ??�� 조심 블라 블라", Toast.LENGTH_SHORT).show();
 			}
 		} else {
 			AlertDialog.Builder connAlert = new AlertDialog.Builder(this);
-			connAlert.setMessage("네트워크에 연결되어 있지 않습니다. 연결 상태를 확인한 뒤 다시 실행해주세요")
+			connAlert.setMessage("?�트?�크???�결?�어 ?��? ?�습?�다. ?�결 ?�태�??�인?????�시 ?�행?�주?�요")
 			.setPositiveButton("종료", new DialogInterface.OnClickListener() {
 				
 				@Override
@@ -98,7 +92,7 @@ public class Intro extends Activity {
 		if (registered) {
 			connThread = new ConnToServerThread("http://www.daum.net");
 			connThread.start();
-			connProgress = ProgressDialog.show(this, "", "로딩.. 잠시만 기다려주세요.");
+			connProgress = ProgressDialog.show(this, "", "로딩.. ?�시�?기다?�주?�요.");
 		}
 	}
 	
@@ -149,7 +143,17 @@ public class Intro extends Activity {
 				// TODO Auto-generated method stub
 				super.handleMessage(msg);
 				connProgress.dismiss();
-				startActivity(new Intent(Intro.this, DemoLayoutActivity.class));
+				
+				boolean autoLogin = getSharedPreferences(C2DMRegister.SHARED_PREF_NAME, Activity.MODE_PRIVATE)
+						.getBoolean(C2DMRegister.AUTO_LOGIN, false);
+				
+				if(autoLogin && C2DMRegister.isRegistered(Intro.this)) {
+					// if autologin is enabled and registered to C2DM server go to main activity right away
+					startActivity(new Intent(Intro.this, DemoLayoutActivity.class));
+				} else {
+					// otherwise it needs to go to Login Activity
+					startActivity(new Intent(Intro.this, RegisterService.class));
+				}
 			}
 			
 		};

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:orientation="horizontal" android:gravity="center" android:layout_height="wrap_content">
-	<ImageView android:src="@drawable/white_dot6"
-		android:layout_width="wrap_content" android:id="@+id/screen1"
-		android:layout_height="wrap_content" android:padding="5dip"></ImageView>
-	<ImageView android:src="@drawable/purple_dot6"
-		android:layout_width="wrap_content" android:id="@+id/screen2"
-		android:layout_height="wrap_content" android:padding="5dip"></ImageView>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/screen1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:src="@drawable/white_dot6" >
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/screen2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:src="@drawable/purple_dot6" >
+    </ImageView>
+
 </LinearLayout>

@@ -1,32 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical">
-	<!-- <include android:id="@+id/_indicator" layout="@layout/indicator"/> -->
-	<com.google.android.apps.iosched.ui.widget.Workspace
-		android:id="@+id/workspace" android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:scrollbars="horizontal"
-		android:fadeScrollbars="true">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-		<LinearLayout android:layout_weight="1" android:gravity="top"
-			android:layout_height="match_parent" android:layout_width="match_parent"
-			android:orientation="horizontal">
-			<include android:id="@+id/func3_p1" layout="@layout/func3_p1"/>
-		</LinearLayout>
-		<LinearLayout android:layout_weight="1" android:gravity="top"
-			android:layout_height="match_parent" android:layout_width="match_parent"
-			android:orientation="horizontal" android:id="@+id/func1_p2">
-			<include android:id="@+id/func3_p2" layout="@layout/func3_p2"/>
-		</LinearLayout>
-		<LinearLayout android:layout_weight="1" android:gravity="top"
-			android:layout_height="match_parent" android:layout_width="match_parent"
-			android:orientation="horizontal" android:id="@+id/func1_p3">
-			<include android:id="@+id/func3_p3" layout="@layout/func3_p3"/>
-		</LinearLayout>
-		<LinearLayout android:layout_weight="1" android:gravity="top"
-			android:layout_height="match_parent" android:layout_width="match_parent"
-			android:orientation="horizontal" android:id="@+id/func1_p4">
-			<include android:id="@+id/func3_p4" layout="@layout/func3_p4"/>
-		</LinearLayout>
-	</com.google.android.apps.iosched.ui.widget.Workspace>
+    <!-- <include android:id="@+id/_indicator" layout="@layout/indicator"/> -->
+
+    <com.google.android.apps.iosched.ui.widget.Workspace
+        android:id="@+id/workspace"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fadeScrollbars="true"
+        android:scrollbars="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <include
+                android:id="@+id/func3_p1"
+                layout="@layout/func3_p1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/func1_p2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <include
+                android:id="@+id/func3_p2"
+                layout="@layout/func3_p2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/func1_p3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <include
+                android:id="@+id/func3_p3"
+                layout="@layout/func3_p3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/func1_p4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <include
+                android:id="@+id/func3_p4"
+                layout="@layout/func3_p4" />
+        </LinearLayout>
+    </com.google.android.apps.iosched.ui.widget.Workspace>
+
 </LinearLayout>
