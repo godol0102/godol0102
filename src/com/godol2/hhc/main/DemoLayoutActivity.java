@@ -4,7 +4,7 @@ import com.godol2.hhc.func1.Func1;
 import com.godol2.hhc.func2.Func2;
 import com.godol2.hhc.func3.Func3;
 import com.godol2.hhc.func4.Func4;
-import com.lcm.demo.R;
+import com.godol2.hhc.R;
 
 import android.app.ActivityGroup;
 import android.content.Intent;
