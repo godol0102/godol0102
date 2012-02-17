@@ -1,29 +1,33 @@
 package com.godol2.hhc.main;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 
+import com.godol2.hhc.c2dm.ConnectivityUtil;
 import com.godol2.hhc.R;
-import com.godol2.hhc.c2dm.C2DMRegister;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class Intro extends Activity {
+	private static final String TAG = "Intro";
 
 	ProgressDialog connProgress;
 	ConnToServerThread connThread;
 	private boolean registered = true;
+	
+	// login related variables
+	private SharedPreferences sharedPreferences;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,9 @@ public class Intro extends Activity {
 		 * Not registred: Show the register button
 		 */
 		
-		
-		//Temp. Needs modification (check tokens in the local file system)
-		
-		if (registered) {
+		// the button will be invisible in case auto login is enabled
+		sharedPreferences = getSharedPreferences(ConnectivityUtil.SHARED_PREF_NAME, Activity.MODE_PRIVATE);
+		if (sharedPreferences.getBoolean(ConnectivityUtil.AUTO_LOGIN, false)) {
 			mButton.setVisibility(View.GONE);
 		}
 		
@@ -89,51 +92,46 @@ public class Intro extends Activity {
 			.show();
 		}
 		
-		if (registered) {
-			connThread = new ConnToServerThread("http://www.daum.net");
+		// let's login in case auto login is enabled.
+		if(sharedPreferences.getBoolean(ConnectivityUtil.AUTO_LOGIN, false)) {
+			// TODO: need to login to the server by sending POST request with ID & PWD
+			// and keep the session so that the application stays logged in
+
+// to keep session
+//			1. 앱에서 login 시에 httpClient에서 쿠키정보를 가지고 온후, setCookieStore()를 통해서 쿠키를 저장합니다.
+//			2. webview에서는 CookieManager에서 저장된 쿠키정보를 불러와  setCookie()을 통해서 쿠키 정보를 저장한후
+//			CookieSyncManager()를 통해서 싱크를 해줍니다
+			
+			connThread = new ConnToServerThread();
 			connThread.start();
-			connProgress = ProgressDialog.show(this, "", "濡쒕뵫.. ?좎떆留?湲곕떎?ㅼ＜?몄슂.");
+//			connThread = new ConnToServerThread("http://www.daum.net");
+//			connThread.start();
+//			connProgress = ProgressDialog.show(this, "", "濡쒕뵫.. ?좎떆留?湲곕떎?ㅼ＜?몄슂.");
 		}
-	}
-	
-	void setRegisteredFlag(boolean register) {
-		registered = register;
-	}
-	
-	boolean getRegisteredFlag () {
-		return registered;
 	}
 	
 	class ConnToServerThread extends Thread {
-		String serverUrl;
 		String connResult;
-		
-		public ConnToServerThread(String url) {
-			// TODO Auto-generated constructor stub
-			serverUrl = url;
-		}
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
-			super.run();
-			try {
-				URL mUrl = new URL(serverUrl);
-				HttpURLConnection conn = (HttpURLConnection) mUrl.openConnection();
-				if (conn != null) {
-					conn.setConnectTimeout(10000);
-					conn.setUseCaches(false);
-					if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-						//Temp. Needs modification
-						//Authenticate user and load user data
-						sleep(3000);
-					}
-				}
-				conn.disconnect();
-			} catch (Exception e) {
-				e.printStackTrace();
+			boolean isLoggedIn = false;
+			boolean autoLogin = sharedPreferences.getBoolean(ConnectivityUtil.AUTO_LOGIN, false);
+			Log.e(TAG,"autoLogin: " + autoLogin);
+			if(autoLogin) {
+				// if auto login is set, login process is required
+				String id = sharedPreferences.getString(ConnectivityUtil.ID, "");
+				String pwd = sharedPreferences.getString(ConnectivityUtil.PWD, "");
+				
+				ConnectivityUtil connectivityUtil = ConnectivityUtil.getInstance(Intro.this);
+		        if(connectivityUtil.loginRequest(Intro.this,id,pwd)) isLoggedIn = true; // login was successful
 			}
-			completeConn.sendEmptyMessage(0);
+	        Message msg = new Message();
+	        // if login was successful start DemoLayoutActivity
+	        if(isLoggedIn) msg.obj = new Intent(Intro.this,DemoLayoutActivity.class);
+	        // otherwise start register page so that user can log in manually or can sign up
+	        else msg.obj = new Intent(Intro.this,RegisterService.class);
+			completeConn.sendMessage(msg);
 		}
 		
 		Handler completeConn = new Handler() {
@@ -143,19 +141,8 @@ public class Intro extends Activity {
 				// TODO Auto-generated method stub
 				super.handleMessage(msg);
 				connProgress.dismiss();
-				
-				boolean autoLogin = getSharedPreferences(C2DMRegister.SHARED_PREF_NAME, Activity.MODE_PRIVATE)
-						.getBoolean(C2DMRegister.AUTO_LOGIN, false);
-				
-				if(autoLogin && C2DMRegister.isRegistered(Intro.this)) {
-					// if autologin is enabled and registered to C2DM server go to main activity right away
-					startActivity(new Intent(Intro.this, DemoLayoutActivity.class));
-				} else {
-					// otherwise it needs to go to Login Activity
-					startActivity(new Intent(Intro.this, RegisterService.class));
-				}
+				startActivity((Intent)msg.obj);
 			}
-			
 		};
 	}
 }
