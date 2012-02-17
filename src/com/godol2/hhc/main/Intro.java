@@ -3,8 +3,8 @@ package com.godol2.hhc.main;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.godol2.hhc.R;
 import com.godol2.hhc.c2dm.C2DMRegister;
-import com.lcm.demo.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.lcm.demo.R;
+import com.godol2.hhc.R;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

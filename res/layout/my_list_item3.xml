@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.godol2.hhc.contact.CheckableRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:godol2="http://schemas.android.com/apk/res/com.godol2.hhc"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    godol2:checkable="@+id/check"
+    android:orientation="horizontal" >
+
+    <imageview
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:focusable="false"
+        android:src="@drawable/icon" >
+    </imageview>
+
+    <checkbox
+        android:id="@id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dip"
+        android:clickable="true"
+        android:focusable="false" >
+    </checkbox>
+
+    <textview
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/img"
+        android:focusable="false" >
+    </textview>
+
+    <textview
+        android:id="@+id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@id/img"
+        android:focusable="false"
+        android:text="This is my list item layout" >
+    </textview>
+
+</com.godol2.hhc.contact.CheckableRelativeLayout>

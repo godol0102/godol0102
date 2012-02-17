@@ -5,8 +5,8 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import com.godol2.hhc.R;
 import com.godol2.hhc.c2dm.C2DMRegister;
-import com.lcm.demo.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

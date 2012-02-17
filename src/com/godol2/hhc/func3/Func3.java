@@ -1,6 +1,6 @@
 package com.godol2.hhc.func3;
 
-import com.lcm.demo.R;
+import com.godol2.hhc.R;
 
 import android.app.Activity;
 import android.os.Bundle;
